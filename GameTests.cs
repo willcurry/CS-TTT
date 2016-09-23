@@ -14,7 +14,7 @@ namespace Tests
         private Player playerO() {
             Player playerO = new HumanPlayer('o');
             return playerO;
-        }
+        } 
 
         [Fact]
         public void gameKnowsPlayersNextMove() {
