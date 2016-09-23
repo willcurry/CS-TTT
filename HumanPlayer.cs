@@ -1,9 +1,12 @@
 using System;
 public class HumanPlayer : Player {
+    
     private readonly char symbol;
+
     public HumanPlayer(char symbol) {
         this.symbol = symbol;
     }
+
     int Player.nextMove(Game game) {
         int move = getMove();
         while (!game.isValid(move)) {
