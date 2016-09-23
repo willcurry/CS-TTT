@@ -9,7 +9,6 @@ namespace Tests
     {
         [Fact]
         public void ThreeByThreeBoardIsCreated() {
-            Console.SetIn(new StringReader("1"));
             Board board = new Board("---------");
             Assert.Equal(board.board, "---------");
         }
