@@ -17,7 +17,7 @@ namespace Tests
         }
 
         [Fact]
-        public void userCanHaveNextMove() {
+        public void gameKnowsPlayersNextMove() {
             Console.SetIn(new StringReader("1"));
             Board board = new Board("---------");
             Game game = new Game(board, playerX(), playerO());

@@ -18,7 +18,7 @@ public class Game {
         return board;
     }
     public void switchPlayers() {
-        var tempPlayer = playerInactive;
+        Player tempPlayer = playerInactive;
         playerInactive = playerActive;
         playerActive = tempPlayer;
     }
