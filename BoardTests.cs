@@ -2,6 +2,8 @@
 using System.IO;
 using Xunit;
 using System.Text;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tests
 {
@@ -25,5 +27,13 @@ namespace Tests
             Assert.Equal(board.isAvailable(2), false);
         }
 
+        [Fact]
+        public void boardKnowsAllPositionsAvailable() {
+            Board board = new Board("-xo-----x");
+            int[] expectedArray = {1, 4, 5, 6, 7, 8};
+            List<int> expected = expectedArray.ToList();
+            Console.WriteLine(board.availablePositions() + " ! " + expected);
+            Assert.Equal(board.availablePositions(), expected);
+        }
     }
 }
