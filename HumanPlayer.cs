@@ -1,13 +1,13 @@
 using System;
 public class HumanPlayer : Player {
-    
-    private readonly char symbol;
 
-    public HumanPlayer(char symbol) {
-        this.symbol = symbol;
+    private readonly char mark;
+
+    public HumanPlayer(char mark) {
+        this.mark = mark;
     }
 
-    int Player.nextMove(Game game) {
+    public int nextMove(Game game) {
         int move = getMove();
         while (!game.isValid(move)) {
             move = getMove();
@@ -15,8 +15,8 @@ public class HumanPlayer : Player {
         return move;
     }
 
-    char Player.symbol() {
-        return symbol;
+    public char symbol() {
+        return mark;
     }
 
     private int getMove() {

@@ -18,5 +18,12 @@ namespace Tests
             Board board = new Board("---------");
             Assert.Equal(board.update(1, 'x').board, "x--------");
         }
+
+        [Fact]
+        public void boardKnowsIfPositionIsAvailable() {
+            Board board = new Board("-x-------");
+            Assert.Equal(board.isAvailable(2), false);
+        }
+
     }
 }

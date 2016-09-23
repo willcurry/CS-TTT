@@ -1,5 +1,5 @@
 public class Game {
-    
+
     private Player playerActive;
     private Player playerInactive;
     private Board board;
@@ -29,7 +29,15 @@ public class Game {
         playerActive = tempPlayer;
     }
     
-    public bool isValid(int position) {
+    private bool withinRange(int position) {
         return (position < 10 && position > 0);
+    }
+
+    private bool isAvailable(int position) {
+        return board.isAvailable(position);
+    }
+
+    public bool isValid(int position) {
+        return withinRange(position) && isAvailable(position);
     }
 }
