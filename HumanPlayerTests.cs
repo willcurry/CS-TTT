@@ -12,5 +12,12 @@ namespace Tests
             Player human = new HumanPlayer('x');
             Assert.Equal(1, human.nextMove());
         }
+
+        [Fact]
+        public void asksForMoveWhileGivenMoveIsInvalid() {
+            Console.SetIn(new StringReader("x\n10\n3"));
+            Player human = new HumanPlayer('x');
+            Assert.Equal(3, human.nextMove());
+        }
     }
 }

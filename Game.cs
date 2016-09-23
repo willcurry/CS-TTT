@@ -22,4 +22,9 @@ public class Game {
         playerInactive = playerActive;
         playerActive = tempPlayer;
     }
+
+    private bool isValid(int position) {
+        return (position < 10 && position > 0);
+    }
+
 }
