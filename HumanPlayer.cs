@@ -4,8 +4,12 @@ public class HumanPlayer : Player {
     public HumanPlayer(char symbol) {
         this.symbol = symbol;
     }
-    int Player.nextMove() {
-        return getMove();
+    int Player.nextMove(Game game) {
+        int move = getMove();
+        while (!game.isValid(move)) {
+            move = getMove();
+        }
+        return move;
     }
 
     char Player.symbol() {
@@ -16,13 +20,6 @@ public class HumanPlayer : Player {
         string userInput = Console.ReadLine();
         int position;
         int.TryParse(userInput, out position);
-        if (isValid(position)) {
-            return position;
-        }
-        return getMove();
-    }
-
-    private bool isValid(int position) {
-        return (position < 10 && position > 0);
+        return position;
     }
 }

@@ -10,14 +10,16 @@ namespace Tests
         public void playerHasNextMove() {
             Console.SetIn(new StringReader("1"));
             Player human = new HumanPlayer('x');
-            Assert.Equal(1, human.nextMove());
+            Game game = new Game(new Board("---------"), human, human);
+            Assert.Equal(1, human.nextMove(game));
         }
 
         [Fact]
         public void asksForMoveWhileGivenMoveIsInvalid() {
             Console.SetIn(new StringReader("x\n10\n3"));
             Player human = new HumanPlayer('x');
-            Assert.Equal(3, human.nextMove());
+            Game game = new Game(new Board("---------"), human, human);
+            Assert.Equal(3, human.nextMove(game));
         }
     }
 }

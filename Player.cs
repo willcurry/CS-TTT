@@ -1,4 +1,4 @@
 public interface Player {
-    int nextMove();
+    int nextMove(Game game);
     char symbol();
 }
