@@ -14,16 +14,17 @@ public class Game {
 
     public static void Main(string[] args) {
         Board board = new Board("---------");
-        Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame(board));
+        Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame());
         game.start();
     }
 
     private void start() {
         askForGameMode();
         while (!board.isGameOver()) {
-            gameType.displayBoard();
+            gameType.displayBoard(board);
             playerMakeMove();
         }
+        gameType.endGameMessage(board);
     }
 
     public void askForGameMode() {

@@ -11,7 +11,7 @@ namespace Tests
             Board board = new Board("oo-------");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("oox------", game.getBoard().board);
         }
@@ -21,7 +21,7 @@ namespace Tests
             Board board = new Board("o--o-----");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("o--o--x--", game.getBoard().board);
         }
@@ -31,7 +31,7 @@ namespace Tests
             Board board = new Board("o---o----");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("o---o---x", game.getBoard().board);
         }
@@ -41,7 +41,7 @@ namespace Tests
             Board board = new Board("xx-------");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("xxx------", game.getBoard().board);
         }
@@ -51,7 +51,7 @@ namespace Tests
             Board board = new Board("x--x-----");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("x--x--x--", game.getBoard().board);
         }
@@ -61,7 +61,7 @@ namespace Tests
             Board board = new Board("x---x----");
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
-            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame(board));
+            Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
             Assert.Equal("x---x---x", game.getBoard().board);
         }

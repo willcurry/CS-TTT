@@ -1,12 +1,6 @@
 using System;
 public class ConsoleGame : GameType {
-    private readonly Board board;
-
-    public ConsoleGame(Board board) {
-        this.board = board;
-    }
-
-    public void displayBoard() {
+    public void displayBoard(Board board) {
         Console.WriteLine(board.board.Substring(0,3));
         Console.WriteLine(board.board.Substring(3, 3));
         Console.WriteLine(board.board.Substring(6, 3));
@@ -19,6 +13,11 @@ public class ConsoleGame : GameType {
         Console.WriteLine("2) Player vs Computer");
         Console.WriteLine("3) Computer vs Computer");
         Console.WriteLine("───────────────────────────────────");
+    }
+
+    public void endGameMessage(Board board) {
+        if (board.findWinner() != 'd') Console.WriteLine(board.findWinner() + " has won the game!");
+        else Console.WriteLine("The game is a draw!");
     }
 
     public int pickGameMode() {
