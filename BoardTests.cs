@@ -32,8 +32,23 @@ namespace Tests
             Board board = new Board("-xo-----x");
             int[] expectedArray = {1, 4, 5, 6, 7, 8};
             List<int> expected = expectedArray.ToList();
-            Console.WriteLine(board.availablePositions() + " ! " + expected);
             Assert.Equal(board.availablePositions(), expected);
+        }
+
+        [Fact]
+        public void boardKnowsAllRows() {
+            Board board = new Board("xx--oo---");
+            string[] expectedArray = {"xx-", "-oo", "---"};
+            List<string> expected = expectedArray.ToList();
+            Assert.Equal(board.getAllRows(), expected);
+        }
+
+        [Fact]
+        public void boardKnowsAllColumns() {
+            Board board = new Board("xx--oo---");
+            string[] expectedArray = {"x--", "xo-", "-o-"};
+            List<string> expected = expectedArray.ToList();
+            Assert.Equal(board.getAllColumns(), expected);
         }
     }
 }
