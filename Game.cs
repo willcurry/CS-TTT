@@ -3,37 +3,31 @@ public class Game {
     private Player playerActive;
     private Player playerInactive;
     private Board board;
+    private readonly GameType gameType;
 
-    public Game(Board board, Player playerActive, Player playerInactive) {
+    public Game(Board board, Player playerActive, Player playerInactive, GameType gameType) {
         this.board = board;
         this.playerActive = playerActive;
         this.playerInactive = playerInactive;
+        this.gameType = gameType;
     }
 
     public static void Main(string[] args) {
         Board board = new Board("---------");
-        Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'));
+        Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame(board));
         game.start();
     }
 
     private void start() {
         pickGameMode();
         while (!board.isGameOver()) {
-            displayBoard();
+            gameType.displayBoard();
             playerMakeMove();
         }
     }
 
-    public void displayGamemodes() {
-        Console.WriteLine("What game mode would you like play?");
-        Console.WriteLine("1) Player vs Player");
-        Console.WriteLine("2) Player vs Computer");
-        Console.WriteLine("3) Computer vs Computer");
-        Console.WriteLine("───────────────────────────────────");
-    }
-
     public void pickGameMode() {
-        displayGamemodes();
+        gameType.displayGamemodes();
         int pick;
         int.TryParse(Console.ReadLine(), out pick);
         if (pick == 2) {
@@ -42,13 +36,6 @@ public class Game {
             playerActive = new ComputerPlayer('x');
             playerInactive = new ComputerPlayer('o');
         }
-    }
-
-    private void displayBoard() {
-        Console.WriteLine(board.board.Substring(0,3));
-        Console.WriteLine(board.board.Substring(3, 3));
-        Console.WriteLine(board.board.Substring(6, 3));
-        Console.WriteLine("───────────────────────────────────");
     }
 
     public int playerNextMove() {
