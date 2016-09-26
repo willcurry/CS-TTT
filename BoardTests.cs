@@ -40,7 +40,7 @@ namespace Tests
             Board board = new Board("xx--oo---");
             string[] expectedArray = {"xx-", "-oo", "---"};
             List<string> expected = expectedArray.ToList();
-            Assert.Equal(board.getAllRows(), expected);
+            Assert.Equal(board.getRows(), expected);
         }
 
         [Fact]
@@ -48,7 +48,15 @@ namespace Tests
             Board board = new Board("xx--oo---");
             string[] expectedArray = {"x--", "xo-", "-o-"};
             List<string> expected = expectedArray.ToList();
-            Assert.Equal(board.getAllColumns(), expected);
+            Assert.Equal(board.getColumns(), expected);
+        }
+
+        [Fact]
+        public void boardKnowsAllDiagonals() {
+            Board board = new Board("x-o-oox-x");
+            string[] expectedArray = {"xox", "oox"};
+            List <string> expected = expectedArray.ToList();
+            Assert.Equal(expected, board.getDiagonals());
         }
     }
 }

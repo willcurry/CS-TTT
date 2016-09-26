@@ -7,11 +7,13 @@ using System.Collections.Generic;
 public class Board {
 
     public readonly string board;
+    public readonly int dimension;
     public readonly int size;
 
     public Board(string board) {
         this.board = board;
-        this.size = (int) Math.Sqrt(board.Length);
+        this.dimension = (int) Math.Sqrt(board.Length);
+        this.size = dimension * dimension;
     }
 
     public bool isAvailable(int position) {
@@ -20,7 +22,7 @@ public class Board {
 
     public List<int> availablePositions() {
         List<int> positions = new List<int>();
-        for (int i=0; i < board.Length; i++) {
+        for (int i=0; i < size; i++) {
             if (board[i] == '-') {
                 positions.Add(i + 1);
             }
@@ -28,11 +30,11 @@ public class Board {
         return positions;
     }
 
-    public List<string> getAllRows() {
+    public List<string> getRows() {
         List<string> rows = new List<string>();
-        for (int i=0; i < board.Length; i+=size) {
+        for (int i=0; i < size; i+=dimension) {
             string row = "";
-            for (int j=i; j < i + size; j++) {
+            for (int j=i; j < i + dimension; j++) {
                 row += board[j];
             }
             rows.Add(row);
@@ -40,16 +42,39 @@ public class Board {
         return rows;
     }
 
-    public List<string> getAllColumns() {
+    public List<string> getColumns() {
         List<string> columns = new List<string>();
-        for (int i=0; i < size; i++) {
+        for (int i=0; i < dimension; i++) {
             string column = "";
-            for (int j=i; j < i + board.Length; j+= size) {
+            for (int j=i; j < i + size; j+= dimension) {
                 column += board[j];
             }
             columns.Add(column);
         }
         return columns;
+    }
+
+    public string getRightDiagonal() {
+        string diagonal = "";
+        for (int i=0; i < size; i+= dimension + 1) {
+            diagonal += board[i];
+        }
+        return diagonal;
+    }
+    
+    public string getLeftDiagonal() {
+        string diagonal = "";
+        for (int i=dimension -1; i < size - 1; i += dimension - 1) {
+            diagonal += board[i];
+        }
+        return diagonal;
+    }
+
+    public List<string> getDiagonals() {
+        List<string> diagonals = new List<string>();
+        diagonals.Add(getRightDiagonal());
+        diagonals.Add(getLeftDiagonal());
+        return diagonals;
     }
 
     public Board update(int position, char symbol) {
