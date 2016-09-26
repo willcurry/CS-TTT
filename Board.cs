@@ -95,11 +95,23 @@ public class Board {
         return 'd';
     }
 
+    public bool hasWinner() {
+        return (findWinner() != 'd');
+    }
+
     private bool containsOnlySame(char player, string formation) {
         foreach (char position in formation) {
             if (position != player) return false;
         }
         return true;
+    }
+
+    public bool hasDraw() {
+        return (!board.Contains("-"));
+    }
+
+    public bool isGameOver() {
+        return (hasWinner() || hasDraw());
     }
 
     public Board update(int position, char symbol) {

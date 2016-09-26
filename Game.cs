@@ -1,5 +1,5 @@
+using System;
 public class Game {
-
     private Player playerActive;
     private Player playerInactive;
     private Board board;
@@ -16,6 +16,7 @@ public class Game {
 
     public void playerMakeMove() {
         board = board.update(playerNextMove(), playerActive.symbol());
+        Console.WriteLine(board);
         switchPlayers();
     }
 

@@ -76,5 +76,17 @@ namespace Tests
             Board board = new Board("x---x---x");
             Assert.Equal('x', board.findWinner());
         }
+
+        [Fact]
+        public void boardKnowsThereIsADraw() {
+            Board board = new Board("oxxxoxoox");
+            Assert.True(board.hasDraw());
+        }
+
+        [Fact]
+        public void boardKnowsWhenGameIsOver() {
+            Board board = new Board("xxx------");
+            Assert.True(board.hasWinner());
+        }
     }
 }
