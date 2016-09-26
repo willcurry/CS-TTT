@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Board {
-
     public readonly string board;
     public readonly int dimension;
     public readonly int size;
@@ -75,6 +74,32 @@ public class Board {
         diagonals.Add(getRightDiagonal());
         diagonals.Add(getLeftDiagonal());
         return diagonals;
+    }
+
+    public List<string> getWinningFormations() {
+        List<string> formations = new List<string>();
+        formations.AddRange(getDiagonals());
+        formations.AddRange(getRows());
+        formations.AddRange(getColumns());
+        return formations;
+    }
+
+    public char findWinner() {
+        foreach (string formation in getWinningFormations()) {
+            if (containsOnlySame('x', formation)) {
+                return 'x';
+            } else if (containsOnlySame('o', formation)) {
+                return 'o';
+            }
+        }
+        return 'd';
+    }
+
+    private bool containsOnlySame(char player, string formation) {
+        foreach (char position in formation) {
+            if (position != player) return false;
+        }
+        return true;
     }
 
     public Board update(int position, char symbol) {
