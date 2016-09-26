@@ -16,7 +16,6 @@ public class Game {
 
     public void playerMakeMove() {
         board = board.update(playerNextMove(), playerActive.symbol());
-        Console.WriteLine(board);
         switchPlayers();
     }
 
