@@ -19,8 +19,8 @@ public class Board {
         return board[position - 1] == '-';
     }
 
-    public List<int> availablePositions() {
-        List<int> positions = new List<int>();
+    public IList<int> availablePositions() {
+        IList<int> positions = new List<int>();
         for (int i=0; i < size; i++) {
             if (board[i] == '-') {
                 positions.Add(i + 1);
@@ -29,8 +29,8 @@ public class Board {
         return positions;
     }
 
-    public List<string> getRows() {
-        List<string> rows = new List<string>();
+    public IList<string> getRows() {
+        IList<string> rows = new List<string>();
         for (int i=0; i < size; i+=dimension) {
             string row = "";
             for (int j=i; j < i + dimension; j++) {
@@ -41,8 +41,8 @@ public class Board {
         return rows;
     }
 
-    public List<string> getColumns() {
-        List<string> columns = new List<string>();
+    public IList<string> getColumns() {
+        IList<string> columns = new List<string>();
         for (int i=0; i < dimension; i++) {
             string column = "";
             for (int j=i; j < i + size; j+= dimension) {
@@ -69,18 +69,18 @@ public class Board {
         return diagonal;
     }
 
-    public List<string> getDiagonals() {
-        List<string> diagonals = new List<string>();
+    public IList<string> getDiagonals() {
+        IList<string> diagonals = new List<string>();
         diagonals.Add(getRightDiagonal());
         diagonals.Add(getLeftDiagonal());
         return diagonals;
     }
 
-    public List<string> getWinningFormations() {
-        List<string> formations = new List<string>();
-        formations.AddRange(getDiagonals());
-        formations.AddRange(getRows());
-        formations.AddRange(getColumns());
+    public IList<string> getWinningFormations() {
+        IList<string> formations = new List<string>();
+        foreach (string formation in getDiagonals()) formations.Add(formation);
+        foreach (string formation in getRows()) formations.Add(formation);
+        foreach (string formation in getColumns()) formations.Add(formation);
         return formations;
     }
 

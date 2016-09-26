@@ -20,4 +20,11 @@ public class ConsoleGame : GameType {
         Console.WriteLine("3) Computer vs Computer");
         Console.WriteLine("───────────────────────────────────");
     }
+
+    public int pickGameMode() {
+        displayGamemodes();
+        int pick;
+        int.TryParse(Console.ReadLine(), out pick);
+        return pick;
+    }
 }

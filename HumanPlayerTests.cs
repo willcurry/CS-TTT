@@ -10,7 +10,7 @@ namespace Tests
         public void playerHasNextMove() {
             Console.SetIn(new StringReader("1"));
             Player human = new HumanPlayer('x');
-            Game game = new Game(new Board("---------"), human, human);
+            Game game = new Game(new Board("---------"), human, human, new ConsoleGame(new Board("---------")));
             Assert.Equal(1, human.nextMove(game));
         }
 
@@ -18,7 +18,7 @@ namespace Tests
         public void asksForMoveWhileGivenMoveIsInvalid() {
             Console.SetIn(new StringReader("x\n10\n3"));
             Player human = new HumanPlayer('x');
-            Game game = new Game(new Board("---------"), human, human);
+            Game game = new Game(new Board("---------"), human, human, new ConsoleGame(new Board("---------")));
             Assert.Equal(3, human.nextMove(game));
         }
     }

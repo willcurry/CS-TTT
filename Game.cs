@@ -19,17 +19,15 @@ public class Game {
     }
 
     private void start() {
-        pickGameMode();
+        askForGameMode();
         while (!board.isGameOver()) {
             gameType.displayBoard();
             playerMakeMove();
         }
     }
 
-    public void pickGameMode() {
-        gameType.displayGamemodes();
-        int pick;
-        int.TryParse(Console.ReadLine(), out pick);
+    public void askForGameMode() {
+        int pick = gameType.pickGameMode();
         if (pick == 2) {
             playerInactive = new ComputerPlayer('o');
         } else if(pick == 3) {
