@@ -18,7 +18,7 @@ namespace Tests
         [Fact]
         public void boardIsUpdatedWithMove() {
             Board board = new Board("---------");
-            Assert.Equal(board.update(1, 'x').board, "x--------");
+            Assert.Equal(board.update(0, 'x').board, "x--------");
         }
 
         [Fact]
@@ -30,9 +30,9 @@ namespace Tests
         [Fact]
         public void boardKnowsAllPositionsAvailable() {
             Board board = new Board("-xo-----x");
-            int[] expectedArray = {1, 4, 5, 6, 7, 8};
+            int[] expectedArray = {0, 3, 4, 5, 6, 7};
             List<int> expected = expectedArray.ToList();
-            Assert.Equal(board.availablePositions(), expected);
+            Assert.Equal(expected, board.availablePositions());
         }
 
         [Fact]

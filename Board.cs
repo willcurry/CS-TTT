@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Board {
     public string board {get; private set;}
@@ -25,14 +26,8 @@ public class Board {
         return withinRange(position) && isAvailable(position);
     }
 
-    public IList<int> availablePositions() {
-        IList<int> positions = new List<int>();
-        for (int i=0; i < size; i++) {
-            if (board[i] == '-') {
-                positions.Add(i + 1);
-            }
-        }
-        return positions;
+    public IEnumerable<int> availablePositions() {
+        return Enumerable.Range(0, size).Where(i => board[i] == '-');
     }
 
     public IList<string> getRows() {
@@ -99,7 +94,7 @@ public class Board {
 
     public Board update(int position, char symbol) {
         StringBuilder newBoard = new StringBuilder(board);
-        newBoard[position - 1] = symbol;
+        newBoard[position] = symbol;
         return new Board(newBoard.ToString());
     }
 

@@ -12,7 +12,7 @@ public class HumanPlayer : Player {
         while (!board.isValid(move)) {
             move = getMove();
         }
-        return move;
+        return move - 1;
     }
 
     public char symbol() {
