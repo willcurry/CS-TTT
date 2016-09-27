@@ -82,39 +82,35 @@ public class Board {
         return formations;
     }
 
-    public char findWinner() {
-        foreach (string formation in getWinningFormations()) {
-            if (containsOnlySame('x', formation)) {
-                return 'x';
-            } else if (containsOnlySame('o', formation)) {
-                return 'o';
-            }
-        }
-        return 'd';
-    }
-
-    public bool hasWinner() {
-        return (findWinner() != 'd');
-    }
-
-    private bool containsOnlySame(char player, string formation) {
+    public bool containsOnlySame(string formation) {
         foreach (char position in formation) {
-            if (position != player) return false;
+            if (formation[0] != position) return false;
         }
         return true;
-    }
-
-    public bool hasDraw() {
-        return (!board.Contains("-"));
-    }
-
-    public bool isGameOver() {
-        return (hasWinner() || hasDraw());
     }
 
     public Board update(int position, char symbol) {
         StringBuilder newBoard = new StringBuilder(board);
         newBoard[position - 1] = symbol;
         return new Board(newBoard.ToString());
+    }
+
+    public bool hasDraw() {
+        return !board.Contains("-");
+    }
+
+    public char getWinner() {
+        foreach (string formation in getWinningFormations()) {
+            if (!formation.Contains("-") && containsOnlySame(formation)) return formation[0];
+        }
+        return '-';
+    }
+
+    public bool hasFinished() {
+        return (isWon() || hasDraw());
+    }
+
+    public bool isWon() {
+        return getWinner() != '-';
     }
 }

@@ -17,7 +17,7 @@ public class ComputerPlayer : Player {
 
     private ScoredMove minimax(int depth, int alpha, int beta, Board board, char player) {
         ScoredMove bestMove = resetBestScore(player);
-        if (board.isGameOver() || depth == 0) {
+        if (board.hasFinished() || depth == 0) {
             return new ScoredMove(score(board, depth), bestMove.score, this);
         }
         foreach (int position in board.availablePositions()) {
@@ -42,9 +42,9 @@ public class ComputerPlayer : Player {
     }
 
     public int score(Board board, int moves) {
-        if (board.findWinner() == mark) {
+        if (board.getWinner() == mark) {
             return moves;
-        }
+        } 
         if (board.hasDraw()){
             return 0;
         }
@@ -59,7 +59,6 @@ public class ComputerPlayer : Player {
             return new ScoredMove(1000, bestMove, this);
         }
     }
-
 
     private class ScoredMove {
         public int move {get; private set;}

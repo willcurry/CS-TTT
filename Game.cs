@@ -20,7 +20,7 @@ public class Game {
 
     private void start() {
         askForGameMode();
-        while (!board.isGameOver()) {
+        while (!board.hasFinished()) {
             gameType.displayBoard(board);
             playerMakeMove();
         }

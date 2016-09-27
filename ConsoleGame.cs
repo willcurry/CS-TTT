@@ -16,7 +16,7 @@ public class ConsoleGame : GameType {
     }
 
     public void endGameMessage(Board board) {
-        if (board.findWinner() != 'd') Console.WriteLine(board.findWinner() + " has won the game!");
+        if (board.isWon()) Console.WriteLine(board.getWinner() + " has won the game!");
         else Console.WriteLine("The game is a draw!");
     }
 
