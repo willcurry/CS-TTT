@@ -1,13 +1,11 @@
-using System.IO;
 using System;
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Board {
-    public readonly string board;
-    public readonly int dimension;
-    public readonly int size;
+    public string board {get; private set;}
+    public int dimension {get; private set;}
+    public int size {get; private set;}
 
     public Board(string board) {
         this.board = board;

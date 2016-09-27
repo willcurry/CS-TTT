@@ -43,7 +43,7 @@ namespace Tests
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
-            Assert.Equal("xxx------", game.getBoard().board);
+            Assert.Equal("xxx------", game.board.board);
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Tests
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
             game.playerMakeMove();
-            Assert.Equal("x--x--x--", game.getBoard().board);
+            Assert.Equal("x--x--x--", game.board.board);
         }
 
         [Fact]

@@ -31,7 +31,7 @@ namespace Tests
             Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
             game.playerMakeMove();
             game.playerMakeMove();
-            Assert.Equal("xo-------", game.getBoard().board);
+            Assert.Equal("xo-------", game.board.board);
         }
     }
 }

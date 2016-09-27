@@ -8,7 +8,7 @@ public class ComputerPlayer : Player {
     }
 
     public int nextMove(Game game) {
-        return minimax(8, Int32.MinValue, Int32.MaxValue, game.getBoard(), mark).getMove();
+        return minimax(8, Int32.MinValue, Int32.MaxValue, game.board, mark).move;
     }
 
     public char symbol() {
@@ -18,16 +18,16 @@ public class ComputerPlayer : Player {
     private ScoredMove minimax(int depth, int alpha, int beta, Board board, char player) {
         ScoredMove bestMove = resetBestScore(player);
         if (board.isGameOver() || depth == 0) {
-            return new ScoredMove(score(board, depth), bestMove.getScore(), this);
+            return new ScoredMove(score(board, depth), bestMove.score, this);
         }
         foreach (int position in board.availablePositions()) {
             Board newBoard = board.update(position, player);
             ScoredMove score = minimax(depth - 1, alpha, beta, newBoard, player == 'x' ? 'o' : 'x');
             bestMove = updateScore(player, bestMove, position, score);
             if (player == mark) {
-                alpha = Math.Max(alpha, bestMove.getScore());
+                alpha = Math.Max(alpha, bestMove.score);
             } else {
-                beta = Math.Min(beta, bestMove.getScore());
+                beta = Math.Min(beta, bestMove.score);
             }
             if (alpha >= beta) break;
         }
@@ -36,7 +36,7 @@ public class ComputerPlayer : Player {
 
     private ScoredMove updateScore(char player, ScoredMove currentBestMove, int position, ScoredMove score) {
         if (score.isBetter(currentBestMove, player)) {
-            currentBestMove = new ScoredMove(score.getScore(), position, this);
+            currentBestMove = new ScoredMove(score.score, position, this);
         }
         return currentBestMove;
     }
@@ -62,22 +62,14 @@ public class ComputerPlayer : Player {
 
 
     private class ScoredMove {
-        private readonly int score;
-        private readonly int move;
+        public int move {get; private set;}
         private readonly ComputerPlayer computerPlayer;
+        public int score {get; private set;}
 
         public ScoredMove(int score, int move, ComputerPlayer computerPlayer) {
-            this.score = score;
             this.move = move;
             this.computerPlayer = computerPlayer;
-        }
-
-        public int getScore() {
-            return score;
-        }
-
-        public int getMove() {
-            return move;
+            this.score = score;
         }
 
         public bool isBetter(ScoredMove scoredMove, char player) {

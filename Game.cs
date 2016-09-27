@@ -2,7 +2,7 @@ using System;
 public class Game {
     private Player playerActive;
     private Player playerInactive;
-    private Board board;
+    public Board board {get; private set;}
     private readonly GameType gameType;
 
     public Game(Board board, Player playerActive, Player playerInactive, GameType gameType) {
@@ -46,10 +46,6 @@ public class Game {
         switchPlayers();
     }
 
-    public Board getBoard() {
-        return board;
-    }
-    
     public void switchPlayers() {
         Player tempPlayer = playerInactive;
         playerInactive = playerActive;
