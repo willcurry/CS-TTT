@@ -20,7 +20,7 @@ namespace Tests
         public void gameKnowsPlayersNextMove() {
             Console.SetIn(new StringReader("1"));
             Board board = new Board("---------");
-            Game game = new Game(board, playerX(), playerO());
+            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
             Assert.Equal(1, game.playerNextMove());
         }
 
@@ -28,10 +28,10 @@ namespace Tests
         public void playerInactiveBecomesActiveAfterTurn() {
             Console.SetIn(new StringReader("1\n2"));
             Board board = new Board("---------");
-            Game game = new Game(board, playerX(), playerO());
+            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
             game.playerMakeMove();
             game.playerMakeMove();
-            Assert.Equal("xo-------", game.getBoard().board);
+            Assert.Equal("xo-------", game.board.board);
         }
     }
 }

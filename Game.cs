@@ -1,17 +1,44 @@
+using System;
 public class Game {
-    
     private Player playerActive;
     private Player playerInactive;
-    private Board board;
+    public Board board {get; private set;}
+    private readonly GameType gameType;
 
-    public Game(Board board, Player playerActive, Player playerInactive) {
+    public Game(Board board, Player playerActive, Player playerInactive, GameType gameType) {
         this.board = board;
         this.playerActive = playerActive;
         this.playerInactive = playerInactive;
+        this.gameType = gameType;
+    }
+
+    public static void Main(string[] args) {
+        Board board = new Board("---------");
+        Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame());
+        game.start();
+    }
+
+    private void start() {
+        askForGameMode();
+        while (!board.hasFinished()) {
+            gameType.displayBoard(board);
+            playerMakeMove();
+        }
+        gameType.endGameMessage(board);
+    }
+
+    public void askForGameMode() {
+        int pick = gameType.pickGameMode();
+        if (pick == 2) {
+            playerInactive = new ComputerPlayer('o');
+        } else if(pick == 3) {
+            playerActive = new ComputerPlayer('x');
+            playerInactive = new ComputerPlayer('o');
+        }
     }
 
     public int playerNextMove() {
-        return playerActive.nextMove(this);
+        return playerActive.nextMove(board);
     }
 
     public void playerMakeMove() {
@@ -19,17 +46,9 @@ public class Game {
         switchPlayers();
     }
 
-    public Board getBoard() {
-        return board;
-    }
-    
     public void switchPlayers() {
         Player tempPlayer = playerInactive;
         playerInactive = playerActive;
         playerActive = tempPlayer;
-    }
-    
-    public bool isValid(int position) {
-        return (position < 10 && position > 0);
     }
 }

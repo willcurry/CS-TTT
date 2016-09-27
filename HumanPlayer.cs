@@ -1,22 +1,22 @@
 using System;
 public class HumanPlayer : Player {
-    
-    private readonly char symbol;
 
-    public HumanPlayer(char symbol) {
-        this.symbol = symbol;
+    private readonly char mark;
+
+    public HumanPlayer(char mark) {
+        this.mark = mark;
     }
 
-    int Player.nextMove(Game game) {
+    public int nextMove(Board board) {
         int move = getMove();
-        while (!game.isValid(move)) {
+        while (!board.isValid(move)) {
             move = getMove();
         }
-        return move;
+        return move - 1;
     }
 
-    char Player.symbol() {
-        return symbol;
+    public char symbol() {
+        return mark;
     }
 
     private int getMove() {
