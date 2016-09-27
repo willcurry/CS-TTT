@@ -58,5 +58,49 @@ namespace Tests
             List <string> expected = expectedArray.ToList();
             Assert.Equal(expected, board.getDiagonals());
         }
+
+        [Fact]
+        public void canFindWinnerOnRow() {
+            Board board = new Board("xxx------");
+            Assert.True(board.isWon());
+        }
+
+        [Fact]
+        public void canFindWinnerOnColumn() {
+            Board board = new Board("x--x--x--");
+            Assert.True(board.isWon());
+        }
+
+        [Fact]
+        public void canFindWinnerOnDiagonal() {
+            Board board = new Board("x---x---x");
+            Assert.True(board.isWon());
+        }
+
+        [Fact]
+        public void knowsThereIsADraw() {
+            Board board = new Board("oxxxoxoox");
+            Assert.True(board.hasDraw());
+        }
+
+        [Fact]
+        public void knowsWhenGameIsOver() {
+            Board board = new Board("xxx------");
+            Assert.True(board.hasFinished());
+        }
+
+        [Fact]
+        public void knowsTheWinner() {
+            Board board = new Board("xxx------");
+            Assert.Equal('x', board.getWinner());
+        }
+
+        [Fact] 
+        public void canValidatePositions() {
+            Board board = new Board("xx-------");
+            Assert.False(board.isValid(1));
+            Assert.False(board.isValid(0));
+            Assert.False(board.isValid(10));
+        }
     }
 }

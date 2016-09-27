@@ -17,6 +17,14 @@ public class Board {
         return board[position - 1] == '-';
     }
 
+    private bool withinRange(int position) {
+        return (position < 10 && position > 0);
+    }
+
+    public bool isValid(int position) {
+        return withinRange(position) && isAvailable(position);
+    }
+
     public IList<int> availablePositions() {
         IList<int> positions = new List<int>();
         for (int i=0; i < size; i++) {

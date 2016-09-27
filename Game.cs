@@ -38,7 +38,7 @@ public class Game {
     }
 
     public int playerNextMove() {
-        return playerActive.nextMove(this);
+        return playerActive.nextMove(board);
     }
 
     public void playerMakeMove() {
@@ -50,17 +50,5 @@ public class Game {
         Player tempPlayer = playerInactive;
         playerInactive = playerActive;
         playerActive = tempPlayer;
-    }
-    
-    private bool withinRange(int position) {
-        return (position < 10 && position > 0);
-    }
-
-    private bool isAvailable(int position) {
-        return board.isAvailable(position);
-    }
-
-    public bool isValid(int position) {
-        return withinRange(position) && isAvailable(position);
     }
 }

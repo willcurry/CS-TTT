@@ -7,9 +7,9 @@ public class HumanPlayer : Player {
         this.mark = mark;
     }
 
-    public int nextMove(Game game) {
+    public int nextMove(Board board) {
         int move = getMove();
-        while (!game.isValid(move)) {
+        while (!board.isValid(move)) {
             move = getMove();
         }
         return move;

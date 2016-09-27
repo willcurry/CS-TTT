@@ -33,47 +33,5 @@ namespace Tests
             game.playerMakeMove();
             Assert.Equal("xo-------", game.board.board);
         }
-
-        [Fact]
-        public void canFindWinnerOnRow() {
-            Board board = new Board("xxx------");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.True(board.isWon());
-        }
-
-        [Fact]
-        public void canFindWinnerOnColumn() {
-            Board board = new Board("x--x--x--");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.True(board.isWon());
-        }
-
-        [Fact]
-        public void canFindWinnerOnDiagonal() {
-            Board board = new Board("x---x---x");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.True(board.isWon());
-        }
-
-        [Fact]
-        public void knowsThereIsADraw() {
-            Board board = new Board("oxxxoxoox");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.True(board.hasDraw());
-        }
-
-        [Fact]
-        public void knowsWhenGameIsOver() {
-            Board board = new Board("xxx------");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.True(board.hasFinished());
-        }
-
-        [Fact]
-        public void knowsTheWinner() {
-            Board board = new Board("xxx------");
-            Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.Equal('x', board.getWinner());
-        }
     }
 }

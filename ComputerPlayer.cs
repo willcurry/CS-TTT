@@ -7,8 +7,8 @@ public class ComputerPlayer : Player {
         this.mark = mark;
     }
 
-    public int nextMove(Game game) {
-        return minimax(8, Int32.MinValue, Int32.MaxValue, game.board, mark).move;
+    public int nextMove(Board board) {
+        return minimax(8, Int32.MinValue, Int32.MaxValue, board, mark).move;
     }
 
     public char symbol() {
