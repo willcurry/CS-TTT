@@ -7,12 +7,12 @@ namespace Tests
 {
     public class HumanPlayerTests {
         [Fact]
-        public void playerHasNextMove() {
+        public void playerHasNextMoveAndIsDecreased() {
             Console.SetIn(new StringReader("1"));
             Player human = new HumanPlayer('x');
             Board board = new Board("---------");
             Game game = new Game(board, human, human, new ConsoleGame());
-            Assert.Equal(1, human.nextMove(board));
+            Assert.Equal(0, human.nextMove(board));
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace Tests
             Player human = new HumanPlayer('x');
             Board board = new Board("---------");
             Game game = new Game(board, human, human, new ConsoleGame());
-            Assert.Equal(3, human.nextMove(board));
+            Assert.Equal(2, human.nextMove(board));
         }
     }
 }

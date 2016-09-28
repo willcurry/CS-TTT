@@ -21,7 +21,8 @@ namespace Tests
             Console.SetIn(new StringReader("1"));
             Board board = new Board("---------");
             Game game = new Game(board, playerX(), playerO(), new ConsoleGame());
-            Assert.Equal(1, game.playerNextMove());
+            game.playerMakeMove();
+            Assert.Equal(game.board.board, "x--------");
         }
 
         [Fact]

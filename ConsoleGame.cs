@@ -12,10 +12,12 @@ public class ConsoleGame : GameType {
         Console.WriteLine("1) Player vs Player");
         Console.WriteLine("2) Player vs Computer");
         Console.WriteLine("3) Computer vs Computer");
+        Console.WriteLine("4) Computer vs Player");
         Console.WriteLine("───────────────────────────────────");
     }
 
-    public void endGameMessage(Board board) {
+    public void endGame(Board board) {
+        displayBoard(board);
         if (board.isWon()) Console.WriteLine(board.getWinner() + " has won the game!");
         else Console.WriteLine("The game is a draw!");
     }

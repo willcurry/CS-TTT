@@ -24,7 +24,7 @@ namespace Tests
         [Fact]
         public void boardKnowsIfPositionIsAvailable() {
             Board board = new Board("-x-------");
-            Assert.Equal(board.isAvailable(2), false);
+            Assert.Equal(board.isValid(2), false);
         }
 
         [Fact]
@@ -33,30 +33,6 @@ namespace Tests
             int[] expectedArray = {0, 3, 4, 5, 6, 7};
             List<int> expected = expectedArray.ToList();
             Assert.Equal(expected, board.availablePositions());
-        }
-
-        [Fact]
-        public void boardKnowsAllRows() {
-            Board board = new Board("xx--oo---");
-            string[] expectedArray = {"xx-", "-oo", "---"};
-            List<string> expected = expectedArray.ToList();
-            Assert.Equal(expected, board.rows());
-        }
-
-        [Fact]
-        public void boardKnowsAllColumns() {
-            Board board = new Board("xx--oo---");
-            string[] expectedArray = {"x--", "xo-", "-o-"};
-            List<string> expected = expectedArray.ToList();
-            Assert.Equal(board.getColumns(), expected);
-        }
-
-        [Fact]
-        public void boardKnowsAllDiagonals() {
-            Board board = new Board("x-o-oox-x");
-            string[] expectedArray = {"xox", "oox"};
-            List <string> expected = expectedArray.ToList();
-            Assert.Equal(expected, board.getDiagonals());
         }
 
         [Fact]

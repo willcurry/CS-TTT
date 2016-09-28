@@ -8,8 +8,10 @@ public class ComputerPlayer : Player {
     }
 
     public int nextMove(Board board) {
+        System.Threading.Thread.Sleep(1000);
         return minimax(8, Int32.MinValue, Int32.MaxValue, board, mark).move;
     }
+
 
     public char symbol() {
         return mark;
@@ -41,7 +43,7 @@ public class ComputerPlayer : Player {
         return currentBestMove;
     }
 
-    public int score(Board board, int moves) {
+    private int score(Board board, int moves) {
         if (board.getWinner() == mark) {
             return moves;
         } 

@@ -1,4 +1,3 @@
-using System;
 public class Game {
     private Player playerActive;
     private Player playerInactive;
@@ -24,20 +23,22 @@ public class Game {
             gameType.displayBoard(board);
             playerMakeMove();
         }
-        gameType.endGameMessage(board);
+        gameType.endGame(board);
     }
 
-    public void askForGameMode() {
+    private void askForGameMode() {
         int pick = gameType.pickGameMode();
         if (pick == 2) {
             playerInactive = new ComputerPlayer('o');
         } else if(pick == 3) {
             playerActive = new ComputerPlayer('x');
             playerInactive = new ComputerPlayer('o');
+        } else if (pick == 4) {
+            playerActive = new ComputerPlayer('x');
         }
     }
 
-    public int playerNextMove() {
+    private int playerNextMove() {
         return playerActive.nextMove(board);
     }
 
@@ -46,7 +47,7 @@ public class Game {
         switchPlayers();
     }
 
-    public void switchPlayers() {
+    private void switchPlayers() {
         Player tempPlayer = playerInactive;
         playerInactive = playerActive;
         playerActive = tempPlayer;

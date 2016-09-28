@@ -14,7 +14,7 @@ public class Board {
         this.size = dimension * dimension;
     }
 
-    public bool isAvailable(int position) {
+    private bool isAvailable(int position) {
         return board[position - 1] == '-';
     }
 
@@ -27,15 +27,15 @@ public class Board {
     }
 
     public IEnumerable<int> availablePositions() {
-        return Enumerable.Range(0, size).Where(i => board[i] == '-');
+        return Enumerable.Range(0, size).Where(position => board[position] == '-');
     }
 
-    public IEnumerable<string> getRows() {
-        return from I in Enumerable.Range(0, dimension)
-                                   select board.Substring(I * dimension, dimension);
+    private IEnumerable<string> getRows() {
+        return from index in Enumerable.Range(0, dimension)
+                                   select board.Substring(index * dimension, dimension);
     }
 
-    public IList<string> getColumns() {
+    private IList<string> getColumns() {
         IList<string> columns = new List<string>();
         for (int i=0; i < dimension; i++) {
             string column = "";
@@ -47,7 +47,7 @@ public class Board {
         return columns;
     }
 
-    public string getRightDiagonal() {
+    private string getRightDiagonal() {
         string diagonal = "";
         for (int i=0; i < size; i+= dimension + 1) {
             diagonal += board[i];
@@ -55,7 +55,7 @@ public class Board {
         return diagonal;
     }
     
-    public string getLeftDiagonal() {
+    private string getLeftDiagonal() {
         string diagonal = "";
         for (int i=dimension -1; i < size - 1; i += dimension - 1) {
             diagonal += board[i];
@@ -63,14 +63,14 @@ public class Board {
         return diagonal;
     }
 
-    public IList<string> getDiagonals() {
+    private IList<string> getDiagonals() {
         IList<string> diagonals = new List<string>();
         diagonals.Add(getRightDiagonal());
         diagonals.Add(getLeftDiagonal());
         return diagonals;
     }
 
-    public IList<string> getWinningFormations() {
+    private IList<string> getWinningFormations() {
         IList<string> formations = new List<string>();
         foreach (string formation in getDiagonals()) formations.Add(formation);
         foreach (string formation in getRows()) formations.Add(formation);
@@ -78,7 +78,7 @@ public class Board {
         return formations;
     }
 
-    public bool containsOnlySame(string formation) {
+    private bool containsOnlySame(string formation) {
         foreach (char position in formation) {
             if (formation[0] != position) return false;
         }
