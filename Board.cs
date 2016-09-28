@@ -30,16 +30,9 @@ public class Board {
         return Enumerable.Range(0, size).Where(i => board[i] == '-');
     }
 
-    public IList<string> getRows() {
-        IList<string> rows = new List<string>();
-        for (int i=0; i < size; i+=dimension) {
-            string row = "";
-            for (int j=i; j < i + dimension; j++) {
-                row += board[j];
-            }
-            rows.Add(row);
-        }
-        return rows;
+    public IEnumerable<string> getRows() {
+        return from I in Enumerable.Range(0, dimension)
+                                   select board.Substring(I * dimension, dimension);
     }
 
     public IList<string> getColumns() {

@@ -40,7 +40,7 @@ namespace Tests
             Board board = new Board("xx--oo---");
             string[] expectedArray = {"xx-", "-oo", "---"};
             List<string> expected = expectedArray.ToList();
-            Assert.Equal(board.getRows(), expected);
+            Assert.Equal(expected, board.rows());
         }
 
         [Fact]
