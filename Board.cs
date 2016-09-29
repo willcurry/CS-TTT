@@ -32,7 +32,7 @@ public class Board {
         return Enumerable.Range(0, size).Where(position => board[position] == '-');
     }
 
-    private IEnumerable<string> getRows() {
+    public IEnumerable<string> getRows() {
         return from index in Enumerable.Range(0, dimension)
                                    select board.Substring(index * dimension, dimension);
     }
