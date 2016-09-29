@@ -44,7 +44,7 @@ public class ComputerPlayer : Player {
     }
 
     private int score(Board board, int moves) {
-        if (board.getWinner() == mark) {
+        if (board.isWon() && board.getWinner() == mark) {
             return moves;
         } 
         if (board.hasDraw()){

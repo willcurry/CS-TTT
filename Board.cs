@@ -7,11 +7,13 @@ public class Board {
     public string board {get; private set;}
     public int dimension {get; private set;}
     public int size {get; private set;}
+    private IList<int> moves;
 
-    public Board(string board) {
+    public Board(string board, IList<int> moves) {
         this.board = board;
         this.dimension = (int) Math.Sqrt(board.Length);
         this.size = dimension * dimension;
+        this.moves = moves;
     }
 
     private bool isAvailable(int position) {
@@ -88,7 +90,8 @@ public class Board {
     public Board update(int position, char symbol) {
         StringBuilder newBoard = new StringBuilder(board);
         newBoard[position] = symbol;
-        return new Board(newBoard.ToString());
+        moves.Add(position);
+        return new Board(newBoard.ToString(), moves);
     }
 
     public bool hasDraw() {
@@ -96,10 +99,7 @@ public class Board {
     }
 
     public char getWinner() {
-        foreach (string formation in getWinningFormations()) {
-            if (!formation.Contains("-") && containsOnlySame(formation)) return formation[0];
-        }
-        return '-';
+        return board[moves[moves.Count - 1]];
     }
 
     public bool hasFinished() {
@@ -107,6 +107,9 @@ public class Board {
     }
 
     public bool isWon() {
-        return getWinner() != '-';
+        foreach (string formation in getWinningFormations()) {
+            if (!formation.Contains("-") && containsOnlySame(formation)) return true;
+        }
+        return false;
     }
 }

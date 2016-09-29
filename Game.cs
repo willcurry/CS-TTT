@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 public class Game {
     private Player playerActive;
     private Player playerInactive;
@@ -12,7 +13,8 @@ public class Game {
     }
 
     public static void Main(string[] args) {
-        Board board = new Board("---------");
+        IList<int> moves = new List<int>();
+        Board board = new Board("---------", moves);
         Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame());
         game.start();
     }
