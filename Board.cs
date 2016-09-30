@@ -32,9 +32,10 @@ public class Board {
         return Enumerable.Range(0, size).Where(position => board[position] == '-');
     }
 
-    public IEnumerable<string> getRows() {
-        return from index in Enumerable.Range(0, dimension)
-                                   select board.Substring(index * dimension, dimension);
+    private IEnumerable<string> getRows(int index) {
+        return from position in Enumerable.Range(0, dimension)
+                                   where board.Substring(position * dimension, dimension).Contains(board[index])
+                                   select board.Substring(position * dimension, dimension);
     }
 
     private IList<string> getColumns() {
@@ -75,7 +76,7 @@ public class Board {
     private IList<string> getWinningFormations() {
         IList<string> formations = new List<string>();
         foreach (string formation in getDiagonals()) formations.Add(formation);
-        foreach (string formation in getRows()) formations.Add(formation);
+        foreach (string formation in getRows(moves[moves.Count - 1])) formations.Add(formation);
         foreach (string formation in getColumns()) formations.Add(formation);
         return formations;
     }
@@ -107,6 +108,7 @@ public class Board {
     }
 
     public bool isWon() {
+        if (moves.Count < dimension) return false;
         foreach (string formation in getWinningFormations()) {
             if (!formation.Contains("-") && containsOnlySame(formation)) return true;
         }

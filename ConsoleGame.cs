@@ -1,14 +1,20 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
+
 public class ConsoleGame : GameType {
     public void displayBoard(Board board) {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Magenta;
-        int count = 1;
-        foreach (string row in board.getRows()) {
+        foreach (string row in rows(board)) {
             Console.WriteLine(row);
-            rowSeperator(count++);
         }
         displayLine();
+    }
+
+    private IEnumerable<string> rows(Board board) {
+        return from position in Enumerable.Range(0, board.dimension)
+               select board.board.Substring(position * board.dimension, board.dimension);
     }
     
     public void displayGamemodes() {
