@@ -32,52 +32,65 @@ public class Board {
         return Enumerable.Range(0, size).Where(position => board[position] == '-');
     }
 
-    private IEnumerable<string> getRows(int index) {
-        return from position in Enumerable.Range(0, dimension)
-                                   where board.Substring(position * dimension, dimension).Contains(board[index])
-                                   select board.Substring(position * dimension, dimension);
+    private string getRow(int index) {
+        for (int i=0; i < size; i+=dimension) {
+            string row = "";
+            bool shouldReturn = false;
+            for (int j=i; j < i + dimension; j++) {
+                row += board[j];
+                if (j == index) shouldReturn = true;
+            }
+            if (shouldReturn) return row;
+        }
+        return "-";
     }
 
-    private IList<string> getColumns() {
-        IList<string> columns = new List<string>();
+    private string getColumn(int index) {
         for (int i=0; i < dimension; i++) {
             string column = "";
+            bool shouldReturn = false;
             for (int j=i; j < i + size; j+= dimension) {
                 column += board[j];
+                if (j == index) shouldReturn = true; 
             }
-            columns.Add(column);
+            if (shouldReturn) return column;
         }
-        return columns;
+        return "-";
     }
 
-    private string getRightDiagonal() {
+    private string getRightDiagonal(int index) {
         string diagonal = "";
+        bool shouldReturn = false;
         for (int i=0; i < size; i+= dimension + 1) {
             diagonal += board[i];
+            if (index == i) shouldReturn = true;
         }
-        return diagonal;
+        return shouldReturn ? diagonal : "-";
     }
     
-    private string getLeftDiagonal() {
+    private string getLeftDiagonal(int index) {
         string diagonal = "";
+        bool shouldReturn = false;
         for (int i=dimension -1; i < size - 1; i += dimension - 1) {
             diagonal += board[i];
+            if (index == i) shouldReturn = true;
         }
-        return diagonal;
+        return shouldReturn ? diagonal : "-";
     }
 
-    private IList<string> getDiagonals() {
+    private IList<string> getDiagonals(int index) {
         IList<string> diagonals = new List<string>();
-        diagonals.Add(getRightDiagonal());
-        diagonals.Add(getLeftDiagonal());
+        diagonals.Add(getRightDiagonal(index));
+        diagonals.Add(getLeftDiagonal(index));
         return diagonals;
     }
 
     private IList<string> getWinningFormations() {
+        int index = moves[moves.Count - 1];
         IList<string> formations = new List<string>();
-        foreach (string formation in getDiagonals()) formations.Add(formation);
-        foreach (string formation in getRows(moves[moves.Count - 1])) formations.Add(formation);
-        foreach (string formation in getColumns()) formations.Add(formation);
+        foreach (string formation in getDiagonals(index)) formations.Add(formation);
+        formations.Add(getRow(index));
+        formations.Add(getColumn(index));
         return formations;
     }
 

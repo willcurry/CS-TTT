@@ -36,18 +36,27 @@ namespace Tests
         [Fact]
         public void canFindWinnerOnRow() {
             Board board = new Board("xxx------", moves);
+            moves.Add(0);
+            moves.Add(1);
+            moves.Add(2);
             Assert.True(board.isWon());
         }
 
         [Fact]
         public void canFindWinnerOnColumn() {
             Board board = new Board("x--x--x--", moves);
+            moves.Add(0);
+            moves.Add(3);
+            moves.Add(6);
             Assert.True(board.isWon());
         }
 
         [Fact]
         public void canFindWinnerOnDiagonal() {
             Board board = new Board("x---x---x", moves);
+            moves.Add(0);
+            moves.Add(4);
+            moves.Add(8);
             Assert.True(board.isWon());
         }
 
@@ -60,6 +69,9 @@ namespace Tests
         [Fact]
         public void knowsWhenGameIsOver() {
             Board board = new Board("xxx------", moves);
+            moves.Add(0);
+            moves.Add(1);
+            moves.Add(2);
             Assert.True(board.hasFinished());
         }
 
