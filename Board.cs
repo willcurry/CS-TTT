@@ -34,28 +34,38 @@ public class Board {
 
     private string getRow(int index) {
         for (int i=0; i < size; i+=dimension) {
-            string row = "";
-            bool shouldReturn = false;
-            for (int j=i; j < i + dimension; j++) {
-                row += board[j];
-                if (j == index) shouldReturn = true;
-            }
-            if (shouldReturn) return row;
+            string row = getRowCells(i, index);
+            if (row != "-") return row;
         }
         return "-";
     }
 
+    private string getRowCells(int rowStart, int index) {
+        string row = "";
+        bool shouldReturn = false;
+        for (int j=rowStart; j < rowStart + dimension; j++) {
+            row += board[j];
+            if (j == index) shouldReturn = true;
+        }
+        return shouldReturn ? row : "-";
+    }
+
     private string getColumn(int index) {
         for (int i=0; i < dimension; i++) {
-            string column = "";
-            bool shouldReturn = false;
-            for (int j=i; j < i + size; j+= dimension) {
-                column += board[j];
-                if (j == index) shouldReturn = true; 
-            }
-            if (shouldReturn) return column;
+            string column = getColumnCells(i, index);
+            if (column != "-") return column;
         }
         return "-";
+    }
+
+    private string getColumnCells(int columnStart, int index) {
+        string column = "";
+        bool shouldReturn = false;
+        for (int j=columnStart; j < columnStart + size; j+= dimension) {
+            column += board[j];
+            if (j == index) shouldReturn = true; 
+        }
+        return shouldReturn ? column : "-";
     }
 
     private string getRightDiagonal(int index) {
