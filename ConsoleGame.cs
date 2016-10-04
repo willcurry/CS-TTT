@@ -6,8 +6,10 @@ public class ConsoleGame : GameType {
     public void displayBoard(Board board) {
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Magenta;
+        int count = 0;
         foreach (string row in rows(board)) {
-            Console.WriteLine(row);
+            ++count;
+            Console.WriteLine(row + "|" + count);
         }
         displayLine();
     }
