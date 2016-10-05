@@ -19,12 +19,16 @@ public class Game {
         game.start();
     }
 
-    private void start() {
-        askForGameMode();
+    private void createGameLoop() {
         while (!board.hasFinished()) {
             gameType.displayBoard(board);
             playerMakeMove();
         }
+    }
+
+    private void start() {
+        askForGameMode();
+        createGameLoop();
         gameType.endGame(board);
     }
 
