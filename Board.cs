@@ -21,11 +21,11 @@ public class Board {
     }
 
     private bool withinRange(int position) {
-        return (position < 10 && position > 0);
+        return (position < 10) && (position > 0);
     }
 
     public bool isValid(int position) {
-        return withinRange(position) && isAvailable(position);
+        return (withinRange(position)) && (isAvailable(position));
     }
 
     public IEnumerable<int> availablePositions() {
@@ -127,7 +127,7 @@ public class Board {
     }
 
     public bool hasFinished() {
-        return (isWon() || hasDraw());
+        return (isWon()) || (hasDraw());
     }
 
     public bool isWon() {

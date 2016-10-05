@@ -9,7 +9,7 @@ public class ConsoleGame : GameType {
         int count = 0;
         foreach (string row in rows(board)) {
             ++count;
-            Console.WriteLine(row + "|" + count);
+            Console.WriteLine(count + "| " + row);
         }
         displayLine();
     }
