@@ -1,21 +1,46 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
+
 public class ConsoleGame : GameType {
     public void displayBoard(Board board) {
-        Console.WriteLine(board.board.Substring(0,3));
-        Console.WriteLine(board.board.Substring(3, 3));
-        Console.WriteLine(board.board.Substring(6, 3));
-        Console.WriteLine("───────────────────────────────────");
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        int count = 0;
+        foreach (string row in rows(board)) {
+            ++count;
+            Console.WriteLine(count + "| " + row);
+        }
+        displayLine();
+    }
+
+    private IEnumerable<string> rows(Board board) {
+        return from position in Enumerable.Range(0, board.dimension)
+               select board.board.Substring(position * board.dimension, board.dimension);
     }
     
     public void displayGamemodes() {
+        Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("What game mode would you like play?");
         Console.WriteLine("1) Player vs Player");
         Console.WriteLine("2) Player vs Computer");
         Console.WriteLine("3) Computer vs Computer");
-        Console.WriteLine("───────────────────────────────────");
+        Console.WriteLine("4) Computer vs Player");
+        displayLine();
     }
 
-    public void endGameMessage(Board board) {
+    private void rowSeperator(int number) {
+        Console.WriteLine("────" + number);
+    }
+
+    private void displayLine() {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("───────────────────────────────────");
+        Console.ResetColor(); 
+    }
+
+    public void endGame(Board board) {
+        displayBoard(board);
         if (board.isWon()) Console.WriteLine(board.getWinner() + " has won the game!");
         else Console.WriteLine("The game is a draw!");
     }

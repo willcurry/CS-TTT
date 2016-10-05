@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 public class Game {
     private Player playerActive;
     private Player playerInactive;
@@ -13,31 +13,38 @@ public class Game {
     }
 
     public static void Main(string[] args) {
-        Board board = new Board("---------");
+        IList<int> moves = new List<int>();
+        Board board = new Board("---------", moves);
         Game game = new Game(board, new HumanPlayer('x'), new HumanPlayer('o'), new ConsoleGame());
         game.start();
     }
 
-    private void start() {
-        askForGameMode();
+    private void createGameLoop() {
         while (!board.hasFinished()) {
             gameType.displayBoard(board);
             playerMakeMove();
         }
-        gameType.endGameMessage(board);
     }
 
-    public void askForGameMode() {
+    private void start() {
+        askForGameMode();
+        createGameLoop();
+        gameType.endGame(board);
+    }
+
+    private void askForGameMode() {
         int pick = gameType.pickGameMode();
         if (pick == 2) {
             playerInactive = new ComputerPlayer('o');
         } else if(pick == 3) {
             playerActive = new ComputerPlayer('x');
             playerInactive = new ComputerPlayer('o');
+        } else if (pick == 4) {
+            playerActive = new ComputerPlayer('x');
         }
     }
 
-    public int playerNextMove() {
+    private int playerNextMove() {
         return playerActive.nextMove(board);
     }
 
@@ -46,7 +53,7 @@ public class Game {
         switchPlayers();
     }
 
-    public void switchPlayers() {
+    private void switchPlayers() {
         Player tempPlayer = playerInactive;
         playerInactive = playerActive;
         playerActive = tempPlayer;

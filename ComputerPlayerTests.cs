@@ -1,14 +1,14 @@
-using System;
-using System.IO;
+using System.Collections.Generic;
 using Xunit;
-using System.Text;
 
 namespace Tests
 {
     public class ComputerPlayerTests {
+        private IList<int> moves = new List<int>();
+
         [Fact]
         public void blocksOpponentOnRow3x3() {
-            Board board = new Board("oo-------");
+            Board board = new Board("oo-------", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
@@ -18,7 +18,7 @@ namespace Tests
 
         [Fact]
         public void blocksOpponentOnColumn3x3() {
-            Board board = new Board("o--o-----");
+            Board board = new Board("o--o-----", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
@@ -28,7 +28,7 @@ namespace Tests
 
         [Fact]
         public void blocksOpponentOnDigonal3x3() {
-            Board board = new Board("o---o----");
+            Board board = new Board("o---o----", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
@@ -38,7 +38,7 @@ namespace Tests
         
         [Fact]
         public void goesForWinOnRow3x3() {
-            Board board = new Board("xx-------");
+            Board board = new Board("xx-------", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
@@ -48,7 +48,7 @@ namespace Tests
 
         [Fact]
         public void goesForWinOnColumn3x3() {
-            Board board = new Board("x--x-----");
+            Board board = new Board("x--x-----", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
@@ -58,7 +58,7 @@ namespace Tests
 
         [Fact]
         public void goesForWinOnDiagonal3x3() {
-            Board board = new Board("x---x----");
+            Board board = new Board("x---x----", moves);
             Player computerPlayer = new ComputerPlayer('x');
             Player computerPlayer2 = new ComputerPlayer('o');
             Game game = new Game(board, computerPlayer, computerPlayer2, new ConsoleGame());
